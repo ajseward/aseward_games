@@ -1,0 +1,23 @@
+<div style="text-align: center"  class="column">
+    <div class="ui one column vertically center aligned grid">
+        <a href="@URL" target="_blank">
+            <div class="column">
+                <i class="ui big orange @Icon icon"></i>
+            </div>
+
+            <div class="column">
+                <span class="ui medium orange text">@Text</span>
+            </div>
+        </a>
+    </div>
+</div>
+@code {
+    [Parameter]
+    public string URL { get; set; }
+    
+    [Parameter]
+    public string Icon { get; set; }
+    
+    [Parameter]
+    public string Text { get; set; }
+}

@@ -1,0 +1,44 @@
+@using System.Net.Mime
+<div class="column">
+    <div class="ui centered orange inverted card">
+        <div class="image">
+            <img src="@Image" alt="@Title">
+        </div>
+        <div class="content">
+            <a href="@URL" target="_blank" class="header">@Title</a>
+            <div class="meta">
+                <span class="date">@Date</span>
+            </div>
+            <div class="description">
+                @Description
+            </div>
+        </div>
+        <div class="extra content">
+            <a href="{{ link }}" class="ui orange button" target="_blank">
+                @ButtonText
+            </a>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public string ButtonText { get; set; }
+
+    [Parameter]
+    public string Description { get; set; }
+
+    [Parameter]
+    public string Image { get; set; }
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public string URL { get; set; }
+
+    [Parameter]
+    public string Date { get; set; }
+
+}

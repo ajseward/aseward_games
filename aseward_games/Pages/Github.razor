@@ -1,0 +1,63 @@
+@page "/Github"
+@inject HttpClient Http
+@inject IJSRuntime JsRuntime;
+
+@if (_items == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="ui very padded selectable basic inverted table">
+        <thead>
+        <tr>
+            <th>Repository</th>
+            <th>Description</th>
+            <th class="right aligned">Language</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in _items)
+        {
+            <tr @onclick="() => NavigateTo(item.HTML_URL)">
+                <td><span class="ui orange text">@item.Name</span></td>
+                <td><span class="ui white text">@item.Description</span></td>
+                <td class="right aligned">
+                    @if (item.Language == "ShaderLab")
+                    {
+                        item.Language = "C#";
+                    }
+                    <span class="ui inverted blue text">@item.Language</span>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+
+
+@code {
+    private static string _apiUrl = @"https://api.github.com/users/ajseward/repos";
+
+    private IList<Repo> _items;
+
+    private async Task NavigateTo(string url)
+    {
+        await JsRuntime.InvokeAsync<object>("open", url, "_blank");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _items = await Http.GetJsonAsync<Repo[]>(_apiUrl);
+    }
+
+    private class Repo
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string HTML_URL { get; set; }
+        public string Language { get; set; }
+    }
+
+}
