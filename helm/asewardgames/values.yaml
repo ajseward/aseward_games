@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: aseward_games:latest
+  repository: docker.home.jslay.net:5000/aseward/aseward_games
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
