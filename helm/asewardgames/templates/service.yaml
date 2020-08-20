@@ -8,8 +8,8 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
+      targetPort: 80
       protocol: TCP
-      name: 80
+      name: http
   selector:
     {{- include "asewardgames.selectorLabels" . | nindent 4 }}
